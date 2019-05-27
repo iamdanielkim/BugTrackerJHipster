@@ -148,7 +148,7 @@ public class TicketResource {
         } else {
             page = new PageImpl<>(ticketRepository.findByAssignedToIsCurrentUser());
         }
-        HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(String.format("/api/tickets/self?eagerload=%b", eagerload), page);
+        HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(UriComponentsBuilder.newInstance().path(String.format("/api/tickets/self?eagerload=%b", eagerload)), page);
         return ResponseEntity.ok().headers(headers).body(page.getContent());
     }
 }
